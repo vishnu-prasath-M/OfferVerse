@@ -32,9 +32,10 @@ export async function GET(_req: NextRequest) {
 
     await prisma.log.create({
       data: {
-        type: 'CRON_UPDATE_DEALS',
+        action: 'cron_update_deals',
+        status: 'success',
         message: `Ran cron at ${now.toISOString()}, posted ${postedCount} deals.`,
-      },
+      } as any,
     });
 
     return NextResponse.json({ success: true, postedCount });

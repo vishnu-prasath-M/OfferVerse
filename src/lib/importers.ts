@@ -44,7 +44,9 @@ export async function importFlipkartDeals() {
       create: {
         title,
         description: offer.description ?? title,
-        image,
+        imageUrl: image,
+        url,
+        normalizedUrl: url,
         offerPrice,
         originalPrice,
         discount,

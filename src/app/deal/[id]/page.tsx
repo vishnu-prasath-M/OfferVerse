@@ -17,8 +17,8 @@ export default async function DealDetailPage({ params }: { params: { id: string 
     <main className="mx-auto max-w-4xl px-4 py-6">
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         <div className="relative h-64 w-full overflow-hidden rounded-xl bg-slate-900">
-          {deal.imageUrl ? (
-            <Image src={deal.imageUrl} alt={deal.title} fill className="object-cover" />
+          {(deal as any).imageUrl ? (
+            <Image src={(deal as any).imageUrl} alt={deal.title} fill className="object-cover" />
           ) : (
             <div className="flex h-full w-full items-center justify-center text-xs text-slate-500">No image</div>
           )}
@@ -38,7 +38,7 @@ export default async function DealDetailPage({ params }: { params: { id: string 
           </div>
           <div className="text-xs text-slate-400">Category: <span className="capitalize text-slate-200">{deal.category}</span></div>
           <div className="pt-2">
-            <GoToDealButton id={deal.id} affiliateLink={deal.affiliateLink || deal.url} />
+            <GoToDealButton id={deal.id} affiliateLink={(deal as any).affiliateLink || (deal as any).url} />
           </div>
         </div>
       </div>

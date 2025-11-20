@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 
-function trendingScore(discount: number, clicks: number) {
-  return discount * 0.6 + clicks * 0.4
+function trendingScore(discount: number) {
+  return discount
 }
 
 export async function GET() {
@@ -19,7 +19,7 @@ export async function GET() {
     })
 
     const scored = candidates
-      .map((d) => ({ deal: d, score: trendingScore(d.discount, d.recentClicks) }))
+      .map((d) => ({ deal: d, score: trendingScore(d.discount) }))
       .sort((a, b) => b.score - a.score)
       .slice(0, postsPerDay)
 
@@ -29,7 +29,7 @@ export async function GET() {
         status: 'success',
         message: `Selected ${scored.length} hot deals`,
         meta: { ids: scored.map((s) => s.deal.id) },
-      },
+      } as any,
     })
 
     return NextResponse.json({ ok: true, ids: scored.map((s) => s.deal.id) })

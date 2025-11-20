@@ -1,19 +1,18 @@
 import { prisma } from '../src/lib/prisma'
-import { normalizeUrl, appendAffiliateParams } from '../src/lib/affiliate'
+import { appendAffiliateParams } from '../src/lib/affiliate'
 
 async function upsertDeal({ title, url, imageUrl, offerPrice, originalPrice, discount, source, category, expiry }: any) {
-  const normalizedUrl = normalizeUrl(url)
   const affiliateLink = appendAffiliateParams(url, source)
-  const existing = await prisma.deal.findFirst({ where: { source, normalizedUrl } })
+  const existing = await prisma.deal.findFirst({ where: { source, url } as any })
   if (existing) {
     await prisma.deal.update({
       where: { id: existing.id },
-      data: { title, imageUrl, offerPrice, originalPrice, discount, url, affiliateLink, category, expiry },
+      data: { title, imageUrl, offerPrice, originalPrice, discount, url, affiliateLink, category, expiry } as any,
     })
     return 'updated'
   } else {
     await prisma.deal.create({
-      data: { title, imageUrl, offerPrice, originalPrice, discount, source, category, tags: [], url, normalizedUrl, affiliateLink, expiry },
+      data: { title, imageUrl, offerPrice, originalPrice, discount, source, category, tags: [], url, affiliateLink, expiry } as any,
     })
     return 'created'
   }

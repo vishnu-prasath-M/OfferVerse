@@ -3,6 +3,8 @@ import { prisma } from "@/lib/prisma";
 import Image from "next/image";
 import { DealCard } from "@/components/deal-card";
 
+export const dynamic = "force-dynamic";
+
 function score(d: { discount: number; recentClicks: number }) {
   return d.discount * 0.6 + d.recentClicks * 0.4;
 }
