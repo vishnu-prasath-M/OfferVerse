@@ -36,8 +36,6 @@ export async function POST(req: NextRequest) {
         title: parsed.title,
         description: parsed.description,
         imageUrl: parsed.image,
-        url: parsed.affiliateLink || '',
-        normalizedUrl: parsed.affiliateLink || '',
         offerPrice,
         originalPrice,
         discount,
