@@ -65,37 +65,32 @@ export function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-40 border-b border-slate-800/70 bg-slate-950/75 backdrop-blur-xl">
+    <header className="sticky top-0 z-40 border-b border-slate-200/60 bg-white/80 backdrop-blur-xl dark:border-slate-800/70 dark:bg-slate-950/80">
       <nav
         className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4"
         aria-label="Main navigation"
       >
         <Link href="/" className="flex items-center gap-2 group">
-          <div className="relative flex h-9 w-9 items-center justify-center rounded-xl bg-slate-900/80 shadow-[0_0_18px_rgba(15,23,42,0.9)] ring-1 ring-cyan-400/40">
-            <span className="text-lg font-black text-cyan-300">
-              %
-            </span>
-            <span className="pointer-events-none absolute -right-1 -bottom-1 inline-flex h-4 w-4 items-center justify-center rounded-full bg-gradient-to-tr from-cyan-400 to-violet-500 text-[9px] font-bold text-slate-950 shadow-[0_0_16px_rgba(124,58,237,0.9)]">
-              ⚡
-            </span>
+          <div className="relative flex h-9 w-9 items-center justify-center rounded-xl bg-slate-100 text-sky-600 shadow-sm ring-1 ring-slate-200 dark:bg-slate-900 dark:text-cyan-300 dark:ring-cyan-500/40">
+            <span className="text-lg font-extrabold">%</span>
           </div>
           <div className="flex flex-col leading-tight">
-            <span className="text-sm font-semibold tracking-wide text-slate-50 transition-[text-shadow,color] group-hover:text-cyan-300 group-hover:[text-shadow:0_0_18px_rgba(34,211,238,0.8)]">
+            <span className="text-sm font-semibold tracking-tight text-slate-900 transition-colors group-hover:text-sky-600 dark:text-slate-50 dark:group-hover:text-cyan-300">
               OfferVerse
             </span>
-            <span className="text-[10px] text-slate-400">
-              Verified deals. Updated live.
+            <span className="text-[11px] text-slate-500 dark:text-slate-400">
+              Verified deals, updated live
             </span>
           </div>
         </Link>
 
-        <div className="hidden items-center gap-8 text-sm font-medium text-slate-300 lg:flex">
+        <div className="hidden items-center gap-8 text-sm font-medium text-slate-600 dark:text-slate-300 lg:flex">
           <div className="flex items-center gap-6">
             {primaryNav.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="relative inline-flex items-center py-1 transition-colors hover:text-cyan-300 focus:outline-none focus-visible:text-cyan-300"
+                className="relative inline-flex items-center py-1 transition-colors hover:text-sky-600 focus:outline-none focus-visible:text-sky-600 dark:hover:text-cyan-300 dark:focus-visible:text-cyan-300"
               >
                 <span>{item.label}</span>
                 {isActive(item.href) && (
@@ -120,14 +115,14 @@ export function Navbar() {
               </button>
               {categoriesOpen && (
                 <div
-                  className="absolute right-0 mt-2 w-56 rounded-2xl border border-slate-800/80 bg-slate-950/95 p-2 text-sm shadow-[0_18px_40px_rgba(15,23,42,0.9)] backdrop-blur-xl"
+                  className="absolute right-0 mt-2 w-56 rounded-2xl border border-slate-200 bg-white p-2 text-sm shadow-lg ring-1 ring-slate-200 dark:border-slate-800/80 dark:bg-slate-950/95 dark:ring-slate-800/80"
                   role="menu"
                 >
                   {categoryItems.map((item) => (
                     <Link
                       key={item.href}
                       href={item.href}
-                      className="flex w-full items-center justify-between rounded-xl px-3 py-2 text-left text-slate-200 hover:bg-slate-900/80 hover:text-cyan-300 focus:outline-none focus-visible:bg-slate-900/80"
+                      className="flex w-full items-center justify-between rounded-xl px-3 py-2 text-left text-slate-700 hover:bg-slate-100 hover:text-sky-600 focus:outline-none focus-visible:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-900/80 dark:hover:text-cyan-300 dark:focus-visible:bg-slate-900/80"
                       role="menuitem"
                     >
                       <span>{item.label}</span>
@@ -142,7 +137,7 @@ export function Navbar() {
             <button
               type="button"
               onClick={toggleTheme}
-              className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-slate-700/80 bg-slate-900/70 text-xs text-slate-300 shadow-sm transition hover:border-cyan-400/70 hover:text-cyan-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/60"
+              className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 bg-white text-xs text-slate-700 shadow-sm transition hover:border-sky-400 hover:text-sky-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/60 dark:border-slate-700/80 dark:bg-slate-900/70 dark:text-slate-300 dark:hover:border-cyan-400/70 dark:hover:text-cyan-300 dark:focus-visible:ring-cyan-500/60"
               aria-label="Toggle theme"
             >
               {theme === "dark" ? "☾" : "☀"}
@@ -152,7 +147,7 @@ export function Navbar() {
               href="https://t.me/OfferZoneTamil"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-1 rounded-full bg-cyan-400 px-4 py-1.5 text-xs font-semibold text-slate-950 shadow-[0_0_24px_rgba(34,211,238,0.7)] transition hover:bg-cyan-300 hover:shadow-[0_0_32px_rgba(34,211,238,0.95)] focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/70"
+              className="inline-flex items-center gap-1 rounded-full bg-sky-500 px-4 py-1.5 text-xs font-semibold text-slate-50 shadow-sm transition hover:bg-sky-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/70 dark:bg-cyan-400 dark:text-slate-950 dark:hover:bg-cyan-300"
             >
               <span>Join Telegram</span>
             </a>
@@ -164,7 +159,7 @@ export function Navbar() {
           <button
             type="button"
             onClick={toggleTheme}
-            className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-slate-700/80 bg-slate-900/70 text-xs text-slate-300 shadow-sm transition hover:border-cyan-400/70 hover:text-cyan-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/60"
+            className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 bg-white text-xs text-slate-700 shadow-sm transition hover:border-sky-400 hover:text-sky-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/60 dark:border-slate-700/80 dark:bg-slate-900/70 dark:text-slate-300 dark:hover:border-cyan-400/70 dark:hover:text-cyan-300 dark:focus-visible:ring-cyan-500/60"
             aria-label="Toggle theme"
           >
             {theme === "dark" ? "☾" : "☀"}
@@ -172,7 +167,7 @@ export function Navbar() {
           <button
             type="button"
             onClick={() => setMobileOpen((prev) => !prev)}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-700/80 bg-slate-900/70 text-slate-200 shadow-sm transition hover:border-cyan-400/70 hover:text-cyan-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/60"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition hover:border-sky-400 hover:text-sky-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/60 dark:border-slate-700/80 dark:bg-slate-900/70 dark:text-slate-200 dark:hover:border-cyan-400/70 dark:hover:text-cyan-300 dark:focus-visible:ring-cyan-500/60"
             aria-label="Toggle navigation menu"
             aria-expanded={mobileOpen}
           >
@@ -183,13 +178,13 @@ export function Navbar() {
       </nav>
 
       {mobileOpen && (
-        <div className="border-t border-slate-800/70 bg-slate-950/95 px-4 pb-4 pt-2 shadow-[0_14px_40px_rgba(15,23,42,0.9)] backdrop-blur-xl lg:hidden">
-          <div className="flex flex-col gap-1 text-sm text-slate-200" role="menu" aria-label="Mobile navigation">
+        <div className="border-t border-slate-200 bg-white/95 px-4 pb-4 pt-2 shadow-lg backdrop-blur-xl dark:border-slate-800/70 dark:bg-slate-950/95 lg:hidden transition-transform">
+          <div className="flex flex-col gap-1 text-sm text-slate-700 dark:text-slate-200" role="menu" aria-label="Mobile navigation">
             {primaryNav.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="flex items-center justify-between rounded-xl px-3 py-2 hover:bg-slate-900/80 hover:text-cyan-300"
+                className="flex items-center justify-between rounded-xl px-3 py-2 hover:bg-slate-100 hover:text-sky-600 dark:hover:bg-slate-900/80 dark:hover:text-cyan-300"
                 role="menuitem"
                 onClick={() => setMobileOpen(false)}
               >
@@ -199,7 +194,7 @@ export function Navbar() {
 
             <button
               type="button"
-              className="mt-1 flex items-center justify-between rounded-xl px-3 py-2 text-left text-slate-200 hover:bg-slate-900/80 hover:text-cyan-300"
+              className="mt-1 flex items-center justify-between rounded-xl px-3 py-2 text-left text-slate-700 hover:bg-slate-100 hover:text-sky-600 dark:text-slate-200 dark:hover:bg-slate-900/80 dark:hover:text-cyan-300"
               aria-haspopup="true"
               aria-expanded={categoriesOpen}
               onClick={() => setCategoriesOpen((prev) => !prev)}
@@ -208,12 +203,12 @@ export function Navbar() {
               <span className="text-[10px]">▾</span>
             </button>
             {categoriesOpen && (
-              <div className="ml-2 mt-1 space-y-1 border-l border-slate-800/80 pl-3" role="group">
+              <div className="ml-2 mt-1 space-y-1 border-l border-slate-200 pl-3 dark:border-slate-800/80" role="group">
                 {categoryItems.map((item) => (
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="block rounded-lg px-3 py-1.5 text-sm text-slate-300 hover:bg-slate-900/80 hover:text-cyan-300"
+                    className="block rounded-lg px-3 py-1.5 text-sm text-slate-600 hover:bg-slate-100 hover:text-sky-600 dark:text-slate-300 dark:hover:bg-slate-900/80 dark:hover:text-cyan-300"
                     onClick={() => setMobileOpen(false)}
                   >
                     {item.label}
@@ -226,7 +221,7 @@ export function Navbar() {
               href="https://t.me/OfferZoneTamil"
               target="_blank"
               rel="noreferrer"
-              className="mt-3 inline-flex items-center justify-center rounded-full bg-cyan-400 px-4 py-2 text-xs font-semibold text-slate-950 shadow-[0_0_22px_rgba(34,211,238,0.8)] hover:bg-cyan-300 hover:shadow-[0_0_30px_rgba(34,211,238,1)]"
+              className="mt-3 inline-flex items-center justify-center rounded-full bg-sky-500 px-4 py-2 text-xs font-semibold text-slate-50 shadow-sm hover:bg-sky-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/70 dark:bg-cyan-400 dark:text-slate-950 dark:hover:bg-cyan-300"
             >
               Join Telegram
             </a>
