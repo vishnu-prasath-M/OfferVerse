@@ -18,6 +18,10 @@ export function DealCard({ deal }: DealCardProps) {
             alt={deal.title}
             fill
             className="object-cover transition duration-500 group-hover:scale-105"
+            loading="lazy"
+            placeholder="blur"
+            blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgZmlsbD0iI2UyZThmMCIvPjwvc3ZnPg=="
+            sizes="(max-width: 768px) 50vw, 33vw"
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center text-xs text-slate-400 dark:text-slate-500">
@@ -37,7 +41,7 @@ export function DealCard({ deal }: DealCardProps) {
           {deal.title}
         </h2>
         {deal.description && (
-          <p className="line-clamp-2 text-[11px] text-slate-500 dark:text-slate-400">{deal.description}</p>
+          <p className="line-clamp-1 text-[11px] text-slate-500 dark:text-slate-400">{deal.description}</p>
         )}
 
         <div className="mt-1 flex items-baseline gap-2 text-sm">

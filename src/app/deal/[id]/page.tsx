@@ -18,7 +18,16 @@ export default async function DealDetailPage({ params }: { params: { id: string 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         <div className="relative h-64 w-full overflow-hidden rounded-xl bg-slate-900">
           {(deal as any).imageUrl ? (
-            <Image src={(deal as any).imageUrl} alt={deal.title} fill className="object-cover" />
+            <Image
+              src={(deal as any).imageUrl}
+              alt={deal.title}
+              fill
+              className="object-cover"
+              priority
+              placeholder="blur"
+              blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgZmlsbD0iIzFhMjAyYyIvPjwvc3ZnPg=="
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
           ) : (
             <div className="flex h-full w-full items-center justify-center text-xs text-slate-500">No image</div>
           )}
@@ -31,7 +40,7 @@ export default async function DealDetailPage({ params }: { params: { id: string 
         </div>
         <div className="space-y-3">
           <h1 className="text-lg font-semibold text-slate-50">{deal.title}</h1>
-          {deal.description && <p className="text-sm text-slate-300">{deal.description}</p>}
+          {deal.description && <p className="line-clamp-3 text-sm text-slate-300">{deal.description}</p>}
           <div className="flex items-baseline gap-3 text-sm">
             <span className="font-semibold text-lime-300">₹{deal.offerPrice.toFixed(0)}</span>
             <span className="text-xs text-slate-500 line-through">₹{deal.originalPrice.toFixed(0)}</span>
