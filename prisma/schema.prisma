@@ -1,0 +1,68 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Deal {
+  id               String   @id @default(cuid())
+  title            String
+  description      String?
+  imageUrl         String?  @map("image")
+  offerPrice       Float
+  originalPrice    Float
+  discount         Int
+  source           String
+  category         String?
+  tags             String[] @default([])
+  affiliateLink    String?
+  expiry           DateTime?
+  recentClicks     Int      @default(0)
+  postedToTelegram Boolean  @default(false)
+  postedAt         DateTime?
+  logs             Log[]
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  // New fields used by importer/telegram/seed
+  url           String?   // raw product URL
+  normalizedUrl String?   // normalized canonical URL
+
+  @@unique([source, affiliateLink])
+  @@index([discount])
+  @@index([expiry])
+  @@index([postedToTelegram])
+  @@index([createdAt])
+}
+
+model Log {
+  id        String   @id @default(cuid())
+  action    String
+  status    String   // success | failure | info
+  message   String?
+  error     String?
+  meta      Json?
+  dealId    String?
+  deal      Deal?     @relation(fields: [dealId], references: [id])
+  createdAt DateTime @default(now())
+}
+
+model Message {
+  id        String   @id @default(cuid())
+  name      String?
+  email     String
+  subject   String?
+  body      String
+  ip        String?
+  createdAt DateTime @default(now())
+  @@index([createdAt])
+}
+
+model AdminUser {
+  id       String @id @default(cuid())
+  username String @unique
+  password String
+}

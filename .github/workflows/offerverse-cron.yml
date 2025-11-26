@@ -1,0 +1,23 @@
+name: OfferVerse Cron Tasks
+
+on:
+  schedule:
+    - cron: "0 * * * *"  # hourly
+  workflow_dispatch:
+
+jobs:
+  run-cron-tasks:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Trigger Main Import (Admitad + Amazon)
+        run: |
+          curl -fsS "https://offer-verse-loots.vercel.app/api/import" || exit 1
+
+      - name: Trigger Telegram hot deals posting
+        run: |
+          curl -fsS "https://offer-verse-loots.vercel.app/api/cron/postHotDeals" || exit 1
+
+      - name: Trigger dummy flash sale endpoint
+        run: |
+          curl -fsS "https://offer-verse-loots.vercel.app/api/flashsale" || exit 1
