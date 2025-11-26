@@ -9,7 +9,7 @@ export default function GoToDealButton({ id, affiliateLink }: Props) {
     setLoading(true)
     try {
       await fetch(`/api/deals/${id}/click`, { method: "POST" })
-    } catch {}
+    } catch { }
     finally {
       setLoading(false)
       window.open(affiliateLink || "#", "_blank")
@@ -18,7 +18,7 @@ export default function GoToDealButton({ id, affiliateLink }: Props) {
   return (
     <button
       onClick={handleClick}
-      className="rounded-full bg-cyan-400 px-4 py-2 text-sm font-semibold text-slate-950 shadow-sm transition hover:bg-cyan-300 disabled:opacity-60"
+      className="rounded-full bg-gradient-to-r from-emerald-500 to-green-600 px-6 py-3 text-base font-bold text-white shadow-lg transition hover:from-emerald-600 hover:to-green-700 hover:shadow-xl disabled:opacity-60 dark:from-cyan-400 dark:to-cyan-500 dark:text-slate-900 dark:hover:from-cyan-300 dark:hover:to-cyan-400"
       disabled={loading}
     >
       {loading ? "Loading…" : "Go to Deal"}

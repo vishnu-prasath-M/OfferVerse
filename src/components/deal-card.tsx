@@ -53,13 +53,13 @@ export function DealCard({ deal }: DealCardProps) {
           </span>
         </div>
 
-        <div className="mt-3 flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400">
+        <div className="mt-3 flex items-center justify-between gap-2 text-[11px] text-slate-500 dark:text-slate-400">
           <span className="rounded-full bg-slate-100 px-2 py-1 capitalize text-[10px] text-slate-700 dark:bg-slate-800 dark:text-slate-200">
             {deal.category}
           </span>
           <Link
             href={`/deal/${deal.id}`}
-            className="rounded-full bg-sky-500 px-3 py-1 text-[11px] font-semibold text-slate-50 shadow-sm transition hover:bg-sky-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/70 dark:bg-cyan-400 dark:text-slate-950 dark:hover:bg-cyan-300"
+            className="rounded-full bg-gradient-to-r from-sky-500 to-blue-600 px-4 py-1.5 text-xs font-bold text-white shadow-md transition hover:from-sky-600 hover:to-blue-700 hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/70 dark:from-cyan-400 dark:to-cyan-500 dark:text-slate-900 dark:hover:from-cyan-300 dark:hover:to-cyan-400"
           >
             View Deal
           </Link>
