@@ -59,7 +59,23 @@ async function fetchAdmitadDeals() {
     item.campaign.name.toLowerCase().includes('flipkart')
   )
 
-  return flipkartDeals
+  // Filter by price range (100 - 1000 INR) and discount > 50%
+  const filteredDeals = flipkartDeals.filter((item) => {
+    const price = item.price || 0
+
+    // Calculate discount
+    let discount = 0
+    if (item.discount) {
+      const match = item.discount.match(/(\d+)/)
+      if (match) discount = parseInt(match[1], 10)
+    } else if (item.old_price && item.price && item.old_price > 0) {
+      discount = Math.round(100 - (item.price / item.old_price) * 100)
+    }
+
+    return price >= 100 && price <= 1000 && discount > 50
+  })
+
+  return filteredDeals
 }
 
 /**

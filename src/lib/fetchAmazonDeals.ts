@@ -78,13 +78,15 @@ export async function fetchAmazonDeals(): Promise<AmazonDeal[]> {
                 const priceINR = Math.round(priceUSD * rate)
                 const oldPriceINR = Math.round(oldPriceUSD * rate)
 
-                // Apply price filter: only keep items between ₹50 and ₹3000
-                if (priceINR < 50 || priceINR > 3000) {
+                // Calculate discount
+                const discount = oldPriceINR && priceINR ? Math.round(((oldPriceINR - priceINR) / oldPriceINR) * 100) : 0
+
+                // Apply filters: 
+                // 1. Price between ₹100 and ₹1000
+                // 2. Discount > 50%
+                if (priceINR < 100 || priceINR > 1000 || discount <= 50) {
                     continue
                 }
-
-                // Calculate discount
-                const discount = oldPriceINR && priceINR ? oldPriceINR - priceINR : null
 
                 // Extract URL - try multiple field names
                 const productUrl = item.url || item.productUrl || item.link || item.asin || ''

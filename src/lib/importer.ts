@@ -50,16 +50,6 @@ export async function importDealsFromCuelinks(pages = 1, perPage = 50): Promise<
           continue
         }
         const deal = parsed.data
-        const source = (deal.merchant_name || deal.store || '').toUpperCase().includes('AMAZON')
-          ? 'amazon'
-          : (deal.merchant_name || deal.store || '').toUpperCase().includes('FLIPKART')
-          ? 'flipkart'
-          : 'other'
-
-        const normalized = normalizeUrl(deal.url)
-        const affiliateLink = appendAffiliateParams(deal.url, source)
-        const expiryStr = deal.expiry || deal.end_date || undefined
-        const expiry = expiryStr ? new Date(expiryStr) : null
 
         const discount = ((): number => {
           if (typeof deal.discount === 'number') return Math.round(deal.discount)
@@ -68,6 +58,25 @@ export async function importDealsFromCuelinks(pages = 1, perPage = 50): Promise<
           }
           return 0
         })()
+
+        // Filter by price range (100 - 1000 INR) and discount > 50%
+        if (deal.offer_price && (deal.offer_price < 100 || deal.offer_price > 1000)) {
+          continue
+        }
+        if (discount <= 50) {
+          continue
+        }
+
+        const source = (deal.merchant_name || deal.store || '').toUpperCase().includes('AMAZON')
+          ? 'amazon'
+          : (deal.merchant_name || deal.store || '').toUpperCase().includes('FLIPKART')
+            ? 'flipkart'
+            : 'other'
+
+        const normalized = normalizeUrl(deal.url)
+        const affiliateLink = appendAffiliateParams(deal.url, source)
+        const expiryStr = deal.expiry || deal.end_date || undefined
+        const expiry = expiryStr ? new Date(expiryStr) : null
 
         const imageUrl = deal.image_url || deal.image || null
 
